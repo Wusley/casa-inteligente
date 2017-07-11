@@ -1,0 +1,204 @@
+#panel {
+	position: absolute;
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+}
+
+#profile {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 55vw;
+	background-color: #6c5b7b;
+  background-repeat: no-repeat;
+  // background-image: url("http://res.cloudinary.com/dwqwnm1r6/image/upload/v1499809967/197caedd4a6c407a60abb84efc970b72_br3fcy.jpg");
+  background-size: 100%;
+
+	.thumb {
+		position: absolute;
+		bottom: 14vw;
+		left: 5vw;
+		width: 20vw;
+		height: 20vw;
+		background-color: #f8aa80;
+	  background-repeat: no-repeat;
+	  background-image: url("http://res.cloudinary.com/dwqwnm1r6/image/upload/v1499808665/house_uwlxiy.png");
+	  background-size: 80%;
+	  background-position: center;
+		border-radius: 50%;
+
+		transition: all .5s linear;
+
+    transform: scale(0, 0);
+    box-shadow: 0 2px 5px 1px rgba( 0, 0, 0, .2 );
+		z-index: 1;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: #f8aa80;
+			border-radius: 50%;
+			z-index: 0;
+		}
+	}
+
+	.box-part {
+		position: absolute;
+		width: 110%;
+		height: 30vw;
+		left: 0;
+		bottom: -5vw;
+		background-color: white;
+		transition: all .3s;
+		transition-timing: ease-in-out;
+		transform-origin: 0% 0%;
+	}
+
+	.thumb {
+    // transform: translateX(-2100%);
+    animation: born .3s .2s forwards;
+
+		&:before {
+    	animation: upper .5s .5s forwards;
+    }
+  }
+
+  .box-part {
+    animation: turning .5s forwards;
+	}
+
+	& + .line-tools {
+		animation: nav .5s .5s forwards;
+
+		& + .tools {
+			$delayFirstItem: .6s;
+
+			.tool-0 {
+	    	animation: fadeIn .5s #{$delayFirstItem} forwards;
+			}
+
+			@for $id from 1 through 20 {
+				.tool-#{$id} {
+		    	animation: fadeIn .5s calc( #{$id} * 0.15s + #{$delayFirstItem}  ) forwards;
+				}
+			}
+		}
+	}
+}
+
+.tools {
+	position: relative;
+	padding-left: 14.5vw;
+	margin-top: -5vw;
+	font-family: 'Roboto';
+
+	.tool {
+		position: relative;
+		padding-left: 10vw;
+		padding: 5vw 0 5vw 10vw;
+  	opacity: 0;
+		transition: all .5s linear;
+
+		&:before {
+			position: absolute;
+			content: "";
+			left: -.74vw;
+			top: 6.5vw;
+			display: block;
+			width: 2.8vw;
+			height: 2.8vw;
+			border-radius: 50%;
+			background-color: #f8aa80;
+		}
+
+		&.on {
+			&:before {
+				background-color: #6fd9c9;
+			}
+		}
+
+		&.off {
+			&:before {
+				background-color: #f67280;
+			}
+		}
+	}
+
+	.name {
+		color: #2F4F4F;
+		font-size: 5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.time {
+		color: #A9A9A9;
+		font-size: 3vw;
+	}
+}
+
+
+.line-tools {
+	position: absolute;
+	width: 1.2vw;
+	background-color: rgba( 0, 0, 0, 0.05 );
+	top: 35vw;
+	left: 14.5vw;
+	height: 0%;
+	z-index: 0;
+}
+
+@keyframes nav {
+  from {
+  	height: 0%;
+  }
+  to {
+  	height: 100%;
+  }
+}
+
+@keyframes born {
+  from {
+  	transform: scale(0, 0);
+  	opacity: 0;
+  }
+  to {
+  	transform: scale(1, 1);
+  	opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+  	opacity: 0;
+  }
+  to {
+  	opacity: 1;
+  }
+}
+
+@keyframes upper {
+  from {
+  	transform: scale(1, 1);
+  	opacity: 1;
+  }
+  to {
+  	transform: scale(1.3, 1.3);
+  	opacity: 0;
+  }
+}
+
+@keyframes turning {
+  from {
+		transform: rotate(0);
+  }
+  to {
+		transform: rotate(7deg);
+  }
+}
