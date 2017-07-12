@@ -1,6 +1,7 @@
 #panel {
 	position: absolute;
 	display: block;
+	display: none;
 	width: 100%;
 	min-height: 100%;
 	overflow: hidden;
@@ -10,7 +11,7 @@
 	position: relative;
 	display: block;
 	width: 100%;
-	height: 50vw;
+	height: 45vw;
 	background-color: #6c5b7b;
   background-repeat: no-repeat;
   // background-image: url("http://res.cloudinary.com/dwqwnm1r6/image/upload/v1499809967/197caedd4a6c407a60abb84efc970b72_br3fcy.jpg");
@@ -148,7 +149,7 @@
 	position: absolute;
 	width: 1.2vw;
 	background-color: rgba( 0, 0, 0, 0.05 );
-	top: 35vw;
+	top: 25vw;
 	left: 14.5vw;
 	height: 0%;
 	z-index: 0;

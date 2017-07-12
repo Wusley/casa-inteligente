@@ -3,7 +3,7 @@
 	width: 100%;
 	height: 100%;
 	display: flex;
-	display: none;
+	// display: none;
 	flex-direction: column;
 	justify-content: center;
 
@@ -18,18 +18,18 @@
 .box-pen {
 	position: relative;
   display: block;
-  width: 118px;
-  height: 128px;
+  width: 70px;
+  height: 94px;
   background-repeat: no-repeat;
-  background-image: url("http://res.cloudinary.com/dwqwnm1r6/image/upload/v1499893344/logo_sljane.png");
-  background-size: 100%;
-  overflow: hidden;
+  background-image: url("http://res.cloudinary.com/dwqwnm1r6/image/upload/v1499895504/logo_tbv6qt.png"); 
+  background-size: 100%; 
+  overflow: hidden; 
 }
 
 .recipe {
   position: relative;
   width: 100%;
-  height: 95%;
+  height: 75%;
   left: -2%;
   background-image: linear-gradient(15deg, #ef725a 0, #f8aa80 75%);
   z-index: -1;
@@ -41,7 +41,7 @@
   width: 100%;
   background: white;
   border-radius: 35%;
-  top: -75%;
+  top: -80%;
   left: -2%;
   animation: wave 5s linear infinite;
   z-index: -2;
