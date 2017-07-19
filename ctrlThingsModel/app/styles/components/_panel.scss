@@ -168,10 +168,11 @@ svg path {
 			border-radius: 50%;
 			// transition: all .5s;
 			
-			opacity: 1;
-	    transform: scale(0, 0);
-			background-color: #f67280;
-			// animation: upper .5s forwards;
+			// opacity: 1;
+	    // transform: scale(0, 0);
+			// background-color: #f67280;
+    	// animation: upper .5s initial;
+			// animation: upper .5s 1.5s initial;
 		}
 	}
 
@@ -179,13 +180,17 @@ svg path {
 		position: absolute;
     visibility: hidden;
 
-		&+ .tool {
-			&:after {
-				background-color: #f67280;
-			}
-			&:before {
-			// 	background-color: #f67280;
-  			// animation: upper .5s forwards;
+		&:not(:checked) {
+			&+ .tool {
+				&:after {
+					background-color: #f67280;
+				}
+				&:before {
+					background-color: #f67280;
+					opacity: 1;
+					transform: scale(1, 1);
+	  			animation: upperFix .5s forwards;
+				}
 			}
 		}
 
@@ -213,7 +218,6 @@ svg path {
 		font-size: 3vw;
 	}
 }
-
 
 .line-tools {
 	position: absolute;
@@ -255,6 +259,17 @@ svg path {
 }
 
 @keyframes upper {
+  from {
+  	transform: scale(1, 1);
+  	opacity: 1;
+  }
+  to {
+  	transform: scale(1.3, 1.3);
+  	opacity: 0;
+  }
+}
+
+@keyframes upperFix {
   from {
   	transform: scale(1, 1);
   	opacity: 1;
