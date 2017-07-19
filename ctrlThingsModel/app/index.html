@@ -42,7 +42,7 @@
       <div class="line-tools"></div>
 
       <ul class="tools">
-        <li class="tool tool-0 on">
+        <li class="item">
           <div class="wifi wifi-out">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 276.991 276.991" style="enable-background:new 0 0 276.991 276.991;" xml:space="preserve">
               <path d="M138.495,97c-35.658,0-69.337,17.345-90.09,46.397c-5.921,8.288-4.001,19.806,4.286,25.726   c8.287,5.922,19.807,4.001,25.726-4.286c13.846-19.383,36.305-30.954,60.078-30.954c23.773,0,46.232,11.571,60.078,30.954   c3.6,5.039,9.268,7.724,15.021,7.724c3.709,0,7.455-1.116,10.704-3.438c8.287-5.92,10.207-17.438,4.286-25.726   C207.831,114.345,174.153,97,138.495,97z">
@@ -53,18 +53,6 @@
               </path>
             </svg>
           </div>
-          <div class="wifi-in"></div>
-          <div class="name">Regador</div>
-          <div class="time"><span class="started">9:02</span></div>
-        </li>
-
-        <li class="tool tool-1 off">
-          <div class="name">Caixa d'água</div>
-          <div class="time"><span class="started">12:45</span> - <span class="ended">14:19</span></div>
-        </li>
-        
-        <li class="tool tool-2 off">
-          <div class="wifi wifi-out"></div>
           <div class="wifi wifi-in">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 276.991 276.991" style="enable-background:new 0 0 276.991 276.991;" xml:space="preserve">
               <path d="M138.495,97c-35.658,0-69.337,17.345-90.09,46.397c-5.921,8.288-4.001,19.806,4.286,25.726   c8.287,5.922,19.807,4.001,25.726-4.286c13.846-19.383,36.305-30.954,60.078-30.954c23.773,0,46.232,11.571,60.078,30.954   c3.6,5.039,9.268,7.724,15.021,7.724c3.709,0,7.455-1.116,10.704-3.438c8.287-5.92,10.207-17.438,4.286-25.726   C207.831,114.345,174.153,97,138.495,97z">
@@ -75,17 +63,24 @@
               </path>
             </svg>
           </div>
-          <div class="name">Abajur</div>
-          <div class="time"><span class="started">21:02</span> - <span class="ended">23:07</span></div>
-        </li>
-        <li class="tool tool-3 off">
-          <div class="name">Iluminação Cozinha</div>
-          <div class="time"><span class="started">10:14</span> - <span class="ended">12:58</span></div>
+
+          <label for="regador">
+            <input type="checkbox" id="regador" name="regador" value="">
+            <div class="tool tool-1">
+              <div class="name">Regador</div>
+              <div class="time"><span class="started">9:02</span></div>
+            </div>
+          </label>
         </li>
         
-        <li class="tool tool-4 on">
-          <div class="name">Iluminação Sala</div>
-          <div class="time"><span class="started">8:10</span></div>
+        <li class="item">
+          <label for="iluminacao-sala">
+            <input type="checkbox" id="iluminacao-sala" name="iluminacao-sala" value="">
+            <div class="tool tool-1">
+              <div class="name">Iluminação Sala</div>
+              <div class="time"><span class="started">8:10</span></div>
+            </div>
+          </label>
         </li>
       </ul>
     </div>

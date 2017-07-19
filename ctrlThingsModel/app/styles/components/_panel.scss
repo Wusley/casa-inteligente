@@ -101,56 +101,103 @@ svg path {
 
 .wifi {
 	position: absolute;
-	display: block;
+	display: none;
 	width: 10vw;
+  top: 2.6vw;
 
 	&-in {
 		transform: rotate(90deg);
-		left: -2.3vw;
-    top: 2.6vw;
+		left: -2.7vw;
 	}
 
 	&-out {
 		transform: rotate(270deg);
 		left: -7.3vw;
-    top: 2.6vw;
 	}
 }
 
 .tools {
 	position: relative;
-	padding-left: 15.1vw;
+	// padding-left: 15.1vw;
 	margin-top: -5vw;
 	font-family: 'Roboto';
 
+	.item {
+		width: 100%;
+	}
+
 	.tool {
 		position: relative;
-		padding-left: 15.1vw;
-		padding: 5vw 0 5vw 10vw;
+		// padding-left: 15.1vw;
+		padding: 5vw 0 5vw 28vw;
   	opacity: 0;
 		transition: all .5s linear;
 
-		&:before {
+		&:after {
 			position: absolute;
 			content: "";
-			left: -1.34vw;
-			top: 6.5vw;
+			left: 13.75vw;
+			top: 6.55vw;
 			display: block;
 			width: 2.8vw;
 			height: 2.8vw;
 			border-radius: 50%;
-			background-color: #f8aa80;
+			background-color: #f67280;
 		}
 
-		&.on {
+		// &.on {
+		// 	&:after {
+		// 		background-color: #6fd9c9;
+		// 	}
+		// }
+
+		// &.off {
+		// 	&:after {
+		// 		background-color: #f67280;
+		// 	}
+		// }
+
+		&:before {
+			position: absolute;
+			content: "";
+			left: 12.7vw;
+			top: 5.45vw;
+			display: block;
+			width: 5vw;
+			height: 5vw;
+			border-radius: 50%;
+			// transition: all .5s;
+			
+			opacity: 1;
+	    transform: scale(0, 0);
+			background-color: #f67280;
+			// animation: upper .5s forwards;
+		}
+	}
+
+	input[type=checkbox] {
+		position: absolute;
+    visibility: hidden;
+
+		&+ .tool {
+			&:after {
+				background-color: #f67280;
+			}
 			&:before {
-				background-color: #6fd9c9;
+			// 	background-color: #f67280;
+  			// animation: upper .5s forwards;
 			}
 		}
 
-		&.off {
-			&:before {
-				background-color: #f67280;
+		&:checked {
+			&+ .tool {
+				&:after {
+					background-color: #6fd9c9;
+				}
+				&:before {
+					background-color: #6fd9c9;
+    			animation: upper .5s forwards;
+				}
 			}
 		}
 	}
