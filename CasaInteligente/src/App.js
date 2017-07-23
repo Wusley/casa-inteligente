@@ -3,6 +3,7 @@ import React from 'react';
 import {
 	StyleSheet,
 	ScrollView,
+	FlatList,
 	View,
 	Text,
 	Image
@@ -30,12 +31,35 @@ const App = () => {
 				</Animatable.View>
 
 				<ScrollView style={ styles.tools }>
-	        <View style={ styles.tool }>
-              <Text style={ styles.name }>Regador</Text>
-              <Text style={ styles.time }>
-								<Text style={ styles.started }>9:02</Text>
-							</Text>
-	        </View>
+
+				<List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+					 <FlatList
+						 data={this.state.data}
+						 renderItem={({ item }) => (
+							 <ListItem
+								 roundAvatar
+								 title={`${item.name.first} ${item.name.last}`}
+								 subtitle={item.email}
+								 avatar={{ uri: item.picture.thumbnail }}
+								 containerStyle={{ borderBottomWidth: 0 }}
+							 />
+						 )}
+						 keyExtractor={item => item.email}
+						 ItemSeparatorComponent={this.renderSeparator}
+						 ListHeaderComponent={this.renderHeader}
+						 ListFooterComponent={this.renderFooter}
+						 onRefresh={this.handleRefresh}
+						 refreshing={this.state.refreshing}
+						 onEndReached={this.handleLoadMore}
+						 onEndReachedThreshold={50}
+					 />
+				 </List>
+	        // <View style={ styles.tool }>
+          //     <Text style={ styles.name }>Regador</Text>
+          //     <Text style={ styles.time }>
+					// 			<Text style={ styles.started }>9:02</Text>
+					// 		</Text>
+	        // </View>
 	      </ScrollView>
     	</View>
     </View>
