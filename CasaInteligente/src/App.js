@@ -32,7 +32,7 @@ const App = () => {
 
 				<ScrollView style={ styles.tools }>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -41,7 +41,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -50,7 +50,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -59,7 +59,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -68,7 +68,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -77,7 +77,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -86,7 +86,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -95,7 +95,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -104,7 +104,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -113,7 +113,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -122,7 +122,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -131,7 +131,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -140,7 +140,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -149,7 +149,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -158,7 +158,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -167,7 +167,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -176,7 +176,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -185,7 +185,7 @@ const App = () => {
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.toolStatus }></View>
+						<View style={ styles.ballStatus }></View>
 						<View style={ styles.boxFix }>
 					    <Text style={ styles.toolName }>Regador</Text>
 					    <Text style={ styles.toolTime }>
@@ -299,23 +299,20 @@ const styles = StyleSheet.create( {
 		borderWidth: 1,
 		borderColor: '#000000'
 	},
-	toolStatus: {
+	ballStatus: {
 		position: 'absolute',
-		left: 17.5*vw,
+		left: 18.5*vw,
 		// top: 5.45*vw,
-		width: 5*vw,
-		height: 5*vw,
+		width: 3*vw,
+		height: 3*vw,
 		borderRadius: 50,
 		backgroundColor: '#f67280'
 	},
 	toolName: {
-
+		fontSize: 21
+		// fontWeight: 'bold'
 	},
 	toolTime: {
-
-	},
-	toolStarted: {
-
 
 	}
 } );
