@@ -31,168 +31,19 @@ const App = () => {
 				</Animatable.View>
 
 				<ScrollView style={ styles.tools }>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
+
+					<TouchableOpacity style={ styles.tool } onPress={() => this.refs.view.bounce(800).then((endState) => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled')}>
+						<Animatable.View ref="view" animation="nav" delay={500} iterationCount="1">
+							<View style={ styles.ballStatus }></View>
+							<View style={ styles.boxFix }>
+							<Text style={ styles.toolName }>Regador</Text>
+							<Text style={ styles.toolTime }>
+							<Text style={ styles.toolStarted }>9:02</Text>
 							</Text>
-						</View>
+							</View>
+						</Animatable.View>
 					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
-					<TouchableOpacity style={ styles.tool } onPress={()=>{}}>
-						<View style={ styles.ballStatus }></View>
-						<View style={ styles.boxFix }>
-					    <Text style={ styles.toolName }>Regador</Text>
-					    <Text style={ styles.toolTime }>
-								<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-						</View>
-					</TouchableOpacity>
+
 	      </ScrollView>
     	</View>
     </View>
@@ -296,13 +147,16 @@ const styles = StyleSheet.create( {
 		left: 30*vw,
 	},
 	tool: {
-		borderWidth: 1,
-		borderColor: '#000000'
+		// borderWidth: 1,
+		borderColor: '#000000',
+		// height: 18*vw
+		paddingTop: 3*vw,
+		paddingBottom: 3*vw
 	},
 	ballStatus: {
 		position: 'absolute',
-		left: 18.5*vw,
-		// top: 5.45*vw,
+		left: 18.7*vw,
+		top: 5.5*vw,
 		width: 3*vw,
 		height: 3*vw,
 		borderRadius: 50,
