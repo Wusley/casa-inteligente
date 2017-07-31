@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import { vw, vh } from 'react-native-viewport-units';
 import {
 	StyleSheet,
@@ -11,51 +11,96 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 
-// MyCustomComponent = Animatable.createAnimatableComponent( MyCustomComponent );
-
 var Dimensions = require( 'Dimensions' ),
 	{ width, height } = Dimensions.get( 'window' );
 
 var vw = width/100,
 	vh = height/100;
 
-const App = () => {
-  return (
-    <View style={ styles.main }>
-    	<View style={ styles.mainFix }>
-	    	<View style={ styles.profile }></View>
-	    	<View style={ styles.boxPart }></View>
-	    	<Animatable.View style={ styles.lineTools } animation="nav" delay={500} iterationCount="1"></Animatable.View>
-	    	<Animatable.View style={ styles.thumb } animation="bounceIn" iterationCount="1">
-					<Image source={{ uri: 'https://res.cloudinary.com/dwqwnm1r6/image/upload/v1499808665/house_uwlxiy.png' }} style={ styles.imageThumb } />
+class Tool extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+			delay: 0,
+			name: 'Tool Name',
+			started: '0:00',
+			ended: '0:00'
+		};
+  }
+
+  render() {
+		let delay = Number( this.props.delay );
+
+    return (
+			<TouchableOpacity style={ styles.tool } onPress={() => {}}>
+				<Animatable.View animation="bounceIn" delay={delay} iterationCount="1">
+					<Animatable.View style={ styles.ballStatus }></Animatable.View>
+					<View style={ styles.boxFix }>
+						<Text style={ styles.toolName }>{this.props.name !== "" ? this.props.name : this.state.name }</Text>
+						<Text style={ styles.toolTime }>
+							<Text style={ styles.toolStarted }>{this.props.started !== "" ? this.props.started : this.state.started }</Text>
+						</Text>
+					</View>
 				</Animatable.View>
+			</TouchableOpacity>
+    );
+  }
+}
 
-				<ScrollView style={ styles.tools }>
+class App extends Component {
 
-					<TouchableOpacity style={ styles.tool } onPress={() => this.refs.view.bounce(800).then((endState) => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled')}>
-						<Animatable.View ref="view" animation="nav" delay={500} iterationCount="1">
-							<View style={ styles.ballStatus }></View>
-							<View style={ styles.boxFix }>
-							<Text style={ styles.toolName }>Regador</Text>
-							<Text style={ styles.toolTime }>
-							<Text style={ styles.toolStarted }>9:02</Text>
-							</Text>
-							</View>
-						</Animatable.View>
-					</TouchableOpacity>
+	render() {
 
-	      </ScrollView>
-    	</View>
-    </View>
-  );
+		const tools = [
+			{
+				"id": 0,
+				"name": "Tool 1",
+				"started": "9:02",
+				"ended": "00:00",
+				"status": 0
+			},
+			{
+				"id": 1,
+				"name": "",
+				"started": "",
+				"ended": "",
+				"status": 0
+			},
+			{
+				"id": 2,
+				"name": "Tool 3",
+				"started": "11:54",
+				"ended": "00:00",
+				"status": 1
+			}
+		];
+
+		// arrumar delay
+
+		const data = tools.map( tool => {
+			let delay = 500 + ( 1250 * ( tool.id + 1 ) );
+      return <Tool key={tool.id} name={tool.name} started={tool.started} delay="{delay}"/>;
+    });
+
+		return (
+			<View style={ styles.main }>
+				<View style={ styles.mainFix }>
+					<View style={ styles.profile }></View>
+					<View style={ styles.boxPart }></View>
+
+					<Animatable.View style={ styles.lineTools } animation="nav" delay={500} iterationCount="1"></Animatable.View>
+					<Animatable.View style={ styles.thumb } animation="bounceIn" iterationCount="1">
+						<Image source={{ uri: 'https://res.cloudinary.com/dwqwnm1r6/image/upload/v1499808665/house_uwlxiy.png' }} style={ styles.imageThumb } />
+					</Animatable.View>
+
+					<ScrollView style={ styles.tools }>
+						{data}
+					</ScrollView>
+				</View>
+			</View>
+		);
+	}
 };
-
-// <View style={ styles.tool }>
-//     <Text style={ styles.name }>Regador</Text>
-//     <Text style={ styles.time }>
-// 			<Text style={ styles.started }>9:02</Text>
-// 		</Text>
-// </View>
 
 Animatable.initializeRegistryWithDefinitions({
 	nav: {
@@ -67,8 +112,6 @@ Animatable.initializeRegistryWithDefinitions({
 	  }
 	}
 } );
-
-// Animatable.initializeRegistryWithDefinitions( fadeIn );
 
 const styles = StyleSheet.create( {
 	main: {
@@ -156,7 +199,7 @@ const styles = StyleSheet.create( {
 	ballStatus: {
 		position: 'absolute',
 		left: 18.7*vw,
-		top: 5.5*vw,
+		top: 3*vw,
 		width: 3*vw,
 		height: 3*vw,
 		borderRadius: 50,
