@@ -15,7 +15,7 @@ var Dimensions = require( 'Dimensions' ),
 	{ width, height } = Dimensions.get( 'window' );
 
 var vw = width/100,
-	vh = height/100;
+		vh = height/100;
 
 class Tool extends Component {
   constructor(props) {
@@ -24,7 +24,8 @@ class Tool extends Component {
 			delay: 0,
 			name: 'Tool Name',
 			started: '0:00',
-			ended: '0:00'
+			ended: '0:00',
+			status: '#f67280'
 		};
   }
 
@@ -32,13 +33,13 @@ class Tool extends Component {
 		let delay = Number( this.props.delay );
 
     return (
-			<TouchableOpacity style={ styles.tool } onPress={() => {}}>
-				<Animatable.View animation="bounceIn" delay={delay} iterationCount="1">
-					<Animatable.View style={ styles.ballStatus }></Animatable.View>
+			<TouchableOpacity style={ styles.tool } onPress={() => { this.state.name = 'epa'; }}>
+				<Animatable.View animation="bounceIn" delay={delay} iterationCount={1}>
+					<Animatable.View style={[styles.ballStatus, { backgroundColor: this.state.status }]}></Animatable.View>
 					<View style={ styles.boxFix }>
-						<Text style={ styles.toolName }>{this.props.name !== "" ? this.props.name : this.state.name }</Text>
+						<Text style={ styles.toolName }>{ this.state.name }</Text>
 						<Text style={ styles.toolTime }>
-							<Text style={ styles.toolStarted }>{this.props.started !== "" ? this.props.started : this.state.started }</Text>
+							<Text style={ styles.toolStarted }>{ this.state.started }</Text>
 						</Text>
 					</View>
 				</Animatable.View>
@@ -78,8 +79,8 @@ class App extends Component {
 		// arrumar delay
 
 		const data = tools.map( tool => {
-			let delay = 500 + ( 1250 * ( tool.id + 1 ) );
-      return <Tool key={tool.id} name={tool.name} started={tool.started} delay="{delay}"/>;
+			let delay = 400 + 250 * parseInt( tool.id );
+      return <Tool key={tool.id} name={tool.name} started={tool.started} delay={delay}/>;
     });
 
 		return (
@@ -88,8 +89,8 @@ class App extends Component {
 					<View style={ styles.profile }></View>
 					<View style={ styles.boxPart }></View>
 
-					<Animatable.View style={ styles.lineTools } animation="nav" delay={500} iterationCount="1"></Animatable.View>
-					<Animatable.View style={ styles.thumb } animation="bounceIn" iterationCount="1">
+					<Animatable.View style={ styles.lineTools } animation="nav" delay={500} iterationCount={1}></Animatable.View>
+					<Animatable.View style={ styles.thumb } animation="bounceIn" iterationCount={1}>
 						<Image source={{ uri: 'https://res.cloudinary.com/dwqwnm1r6/image/upload/v1499808665/house_uwlxiy.png' }} style={ styles.imageThumb } />
 					</Animatable.View>
 
@@ -202,8 +203,7 @@ const styles = StyleSheet.create( {
 		top: 3*vw,
 		width: 3*vw,
 		height: 3*vw,
-		borderRadius: 50,
-		backgroundColor: '#f67280'
+		borderRadius: 50
 	},
 	toolName: {
 		fontSize: 21
