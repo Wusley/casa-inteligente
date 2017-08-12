@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
 	StyleSheet,
 	ScrollView,
-	TouchableOpacity,
+	TouchableNativeFeedback,
 	View,
 	Text,
 	Image
@@ -20,22 +20,27 @@ var vw = width/100,
 class Tool extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-			delay: 0,
-			name: 'Tool Name',
-			started: '0:00',
-			ended: '0:00',
-			status: '#f67280'
+			delay: Number( props.delay ),
+			name: props.name,
+			started: props.started,
+			ended: props.ended,
+			status: props.status
 		};
   }
 
   render() {
-		let delay = Number( this.props.delay );
+		const { status } = this.state;
 
     return (
-			<TouchableOpacity style={ styles.tool } onPress={() => { this.state.name = 'epa'; }}>
-				<Animatable.View animation="bounceIn" delay={delay} iterationCount={1}>
-					<Animatable.View style={[styles.ballStatus, { backgroundColor: this.state.status }]}></Animatable.View>
+			<TouchableNativeFeedback style={ styles.tool } onPress={ () => {
+					this.setState( { status: !status } );
+			    this.refs.view.animate( 'rubberBand', 2000 );
+				}
+			}>
+				<Animatable.View animation="bounceIn" delay={this.state.delay} iterationCount={1}>
+					<Animatable.View ref="view" style={[ styles.ballStatus, status && styles.ballStatusOn ]} transition={['backgroundColor']}></Animatable.View>
 					<View style={ styles.boxFix }>
 						<Text style={ styles.toolName }>{ this.state.name }</Text>
 						<Text style={ styles.toolTime }>
@@ -43,7 +48,7 @@ class Tool extends Component {
 						</Text>
 					</View>
 				</Animatable.View>
-			</TouchableOpacity>
+			</TouchableNativeFeedback>
     );
   }
 }
@@ -55,32 +60,37 @@ class App extends Component {
 		const tools = [
 			{
 				"id": 0,
-				"name": "Tool 1",
+				"name": "Lâmpada cozinha",
 				"started": "9:02",
-				"ended": "00:00",
-				"status": 0
+				"ended": "9:17",
+				"status": true
 			},
 			{
 				"id": 1,
-				"name": "",
-				"started": "",
-				"ended": "",
-				"status": 0
+				"name": "Campainha",
+				"started": "21:45",
+				"ended": "21:45",
+				"status": false
 			},
 			{
 				"id": 2,
-				"name": "Tool 3",
+				"name": "Abajur",
 				"started": "11:54",
-				"ended": "00:00",
-				"status": 1
+				"ended": "13:14",
+				"status": true
+			},
+			{
+				"id": 3,
+				"name": "Lâmpada sala",
+				"started": "20:54",
+				"ended": "22:01",
+				"status": true
 			}
 		];
 
-		// arrumar delay
-
 		const data = tools.map( tool => {
 			let delay = 400 + 250 * parseInt( tool.id );
-      return <Tool key={tool.id} name={tool.name} started={tool.started} delay={delay}/>;
+      return <Tool key={ tool.id } status={ tool.status } name={ tool.name } started={ tool.started } ended={ tool.ended } delay={ delay }/>;
     });
 
 		return (
@@ -89,13 +99,13 @@ class App extends Component {
 					<View style={ styles.profile }></View>
 					<View style={ styles.boxPart }></View>
 
-					<Animatable.View style={ styles.lineTools } animation="nav" delay={500} iterationCount={1}></Animatable.View>
-					<Animatable.View style={ styles.thumb } animation="bounceIn" iterationCount={1}>
+					<Animatable.View style={ styles.lineTools } animation="nav" delay={ 500 } iterationCount={ 1 }></Animatable.View>
+					<Animatable.View style={ styles.thumb } animation="bounceIn" iterationCount={ 1 }>
 						<Image source={{ uri: 'https://res.cloudinary.com/dwqwnm1r6/image/upload/v1499808665/house_uwlxiy.png' }} style={ styles.imageThumb } />
 					</Animatable.View>
 
 					<ScrollView style={ styles.tools }>
-						{data}
+						{ data }
 					</ScrollView>
 				</View>
 			</View>
@@ -189,21 +199,25 @@ const styles = StyleSheet.create( {
 	},
 	boxFix: {
 		left: 30*vw,
+		paddingTop: 3*vw,
+		paddingBottom: 3*vw
 	},
 	tool: {
 		// borderWidth: 1,
 		borderColor: '#000000',
-		// height: 18*vw
-		paddingTop: 3*vw,
-		paddingBottom: 3*vw
+		// height: 18*vw,
 	},
 	ballStatus: {
 		position: 'absolute',
 		left: 18.7*vw,
-		top: 3*vw,
+		top: 6*vw,
 		width: 3*vw,
 		height: 3*vw,
-		borderRadius: 50
+		borderRadius: 50,
+		backgroundColor: '#f67280'
+	},
+	ballStatusOn: {
+		backgroundColor: '#6fd9c9'
 	},
 	toolName: {
 		fontSize: 21
