@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
+import * as firebase from "firebase";
 
 var Dimensions = require( 'Dimensions' ),
 	{ width, height } = Dimensions.get( 'window' );
@@ -20,6 +21,39 @@ var vw = width/100,
 class Tool extends Component {
   constructor(props) {
     super(props);
+
+		// let myFirebaseRef = new firebase('https://casainteligente-975a3.firebaseio.com/');
+
+		var firebaseConfig = {
+	    apiKey: "AIzaSyDhC4Z7RA3hIv3zXLbQy7Ba1A3iPQqVF2U",
+	    authDomain: "casainteligente-975a3.firebaseapp.com",
+	    databaseURL: "https://casainteligente-975a3.firebaseio.com",
+	    projectId: "casainteligente-975a3",
+			// storageBucket: ""
+	    storageBucket: "casainteligente-975a3.appspot.com",
+	    messagingSenderId: "612325903889"
+	  };
+
+		// const rootRef;
+
+		if(!firebase.apps.length) {
+		  firebase.initializeApp(firebaseConfig);
+			const rootRef = firebase.database().ref( 'casa-1' );
+
+			console.log( rootRef.child( 'lampada-1' ) );
+
+
+			// rootRef.once('value').then(function(snapshot) {
+				// var username = snapshot.val().username;
+				// console.log( snapshot );
+				// ...
+			// });
+		}
+
+		// Create a reference with .ref() instead of new Firebase(url)
+		// const itemsRef = rootRef.child('items');
+
+
 
     this.state = {
 			delay: Number( props.delay ),
