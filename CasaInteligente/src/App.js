@@ -29,7 +29,6 @@ class Tool extends Component {
 	    authDomain: "casainteligente-975a3.firebaseapp.com",
 	    databaseURL: "https://casainteligente-975a3.firebaseio.com",
 	    projectId: "casainteligente-975a3",
-			// storageBucket: ""
 	    storageBucket: "casainteligente-975a3.appspot.com",
 	    messagingSenderId: "612325903889"
 	  };
@@ -38,22 +37,13 @@ class Tool extends Component {
 
 		if(!firebase.apps.length) {
 		  firebase.initializeApp(firebaseConfig);
-			const rootRef = firebase.database().ref( 'casa-1' );
+			const rootRef = firebase.database().ref().on('value').then(function(snapshot) {
 
-			console.log( rootRef.child( 'lampada-1' ) );
+			  var value = snapshot.val();
 
+				console.log( value );
 
-			// rootRef.once('value').then(function(snapshot) {
-				// var username = snapshot.val().username;
-				// console.log( snapshot );
-				// ...
-			// });
-		}
-
-		// Create a reference with .ref() instead of new Firebase(url)
-		// const itemsRef = rootRef.child('items');
-
-
+			});
 
     this.state = {
 			delay: Number( props.delay ),
