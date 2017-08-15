@@ -22,29 +22,6 @@ class Tool extends Component {
   constructor(props) {
     super(props);
 
-		// let myFirebaseRef = new firebase('https://casainteligente-975a3.firebaseio.com/');
-
-		var firebaseConfig = {
-	    apiKey: "AIzaSyDhC4Z7RA3hIv3zXLbQy7Ba1A3iPQqVF2U",
-	    authDomain: "casainteligente-975a3.firebaseapp.com",
-	    databaseURL: "https://casainteligente-975a3.firebaseio.com",
-	    projectId: "casainteligente-975a3",
-	    storageBucket: "casainteligente-975a3.appspot.com",
-	    messagingSenderId: "612325903889"
-	  };
-
-		// const rootRef;
-
-		if(!firebase.apps.length) {
-		  firebase.initializeApp(firebaseConfig);
-			const rootRef = firebase.database().ref().on('value').then(function(snapshot) {
-
-			  var value = snapshot.val();
-
-				console.log( value );
-
-			});
-
     this.state = {
 			delay: Number( props.delay ),
 			name: props.name,
@@ -78,6 +55,45 @@ class Tool extends Component {
 }
 
 class App extends Component {
+	componentWillMount() {
+		var firebaseConfig = {
+			apiKey: "AIzaSyDhC4Z7RA3hIv3zXLbQy7Ba1A3iPQqVF2U",
+			authDomain: "casainteligente-975a3.firebaseapp.com",
+			databaseURL: "https://casainteligente-975a3.firebaseio.com",
+			projectId: "casainteligente-975a3",
+			storageBucket: "casainteligente-975a3.appspot.com",
+			messagingSenderId: "612325903889"
+		};
+
+		firebase.initializeApp(firebaseConfig);
+
+		const rootRef = firebase.database().ref('casa-1').once('value').then(function(snapshot) {
+
+			let tools = [];
+
+			snapshot.forEach(function( data ) {
+
+				tools.push( data.val() );
+
+			} );
+
+			console.log(props);
+
+
+			this.setState( {
+				data: tools
+			} );
+
+		} );
+	}
+
+	constructor(props) {
+    super(props);
+
+		this.state = {
+			data: {}
+		};
+	}
 
 	render() {
 
@@ -112,10 +128,19 @@ class App extends Component {
 			}
 		];
 
-		const data = tools.map( tool => {
-			let delay = 400 + 250 * parseInt( tool.id );
-      return <Tool key={ tool.id } status={ tool.status } name={ tool.name } started={ tool.started } ended={ tool.ended } delay={ delay }/>;
-    });
+		console.log(tools);
+
+		// function listTools( tools ) {
+		// 	return tools.map( tool => {
+		// 		let delay = 400 + 250 * parseInt( tool.id );
+	  //     return <Tool key={ tool.id } status={ tool.status } name={ tool.name } started={ tool.started } ended={ tool.ended } delay={ delay }/>;
+	  //   } );
+		// }
+
+		// this.data = tools.map( tool => {
+		// 					let delay = 400 + 250 * parseInt( tool.id );
+		// 		      return <Tool key={ tool.id } status={ tool.status } name={ tool.name } started={ tool.started } ended={ tool.ended } delay={ delay }/>;
+		// 		    } );
 
 		return (
 			<View style={ styles.main }>
@@ -129,7 +154,7 @@ class App extends Component {
 					</Animatable.View>
 
 					<ScrollView style={ styles.tools }>
-						{ data }
+						{ this.data }
 					</ScrollView>
 				</View>
 			</View>
