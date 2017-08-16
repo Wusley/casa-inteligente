@@ -47,7 +47,7 @@ toolsRef
 
             let $this = $( this );
 
-            toolsRef.child( $this.prop( 'id' ) ).update( { status: $this.prop( 'checked' ) } );
+            toolsRef.child( $this.closest( '.item' ).prop( 'id' ) ).update( { status: $this.prop( 'checked' ) } );
 
           } );
 
