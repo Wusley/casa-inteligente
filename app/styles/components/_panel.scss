@@ -87,7 +87,7 @@
 
 			@for $id from 1 through 20 {
 				.tool-#{$id} {
-		    	animation: fadeIn .5s calc( #{$id} * 0.15s + #{$delayFirstItem}  ) forwards;
+		    	animation: fadeIn .5s calc( #{$id} * 0.15s + #{$delayFirstItem} ) forwards;
 				}
 			}
 		}
@@ -121,6 +121,10 @@ svg path {
 	// padding-left: 15.1vw;
 	margin-top: -5vw;
 	font-family: 'Roboto';
+
+	.lbl {
+		display: block;
+	}
 
 	.item {
 		width: 100%;
@@ -167,7 +171,7 @@ svg path {
 			height: 5vw;
 			border-radius: 50%;
 			// transition: all .5s;
-			
+
 			// opacity: 1;
 	    // transform: scale(0, 0);
 			// background-color: #f67280;

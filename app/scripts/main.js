@@ -10,32 +10,62 @@ let $templTool = $('<li class="item">\
                       </label>\
                     </li>');
 
-const rootRef = firebase.database().ref('casa-1').once('value');
+const toolsRef = firebase.database().ref( 'casa-1/tools' );
 
-rootRef
-  .then(function(snapshot) {
+toolsRef
+  .once( 'value' )
+    .then( function( snapshot ) {
 
-    // console.log( snapshot );
+      let tools = snapshot.val(),
+          $tools = $( '.tools' );
 
-    let tools = snapshot.val();
+      for( let id in tools ) {
 
-    for( let slug in tools ) {
+        if( tools.hasOwnProperty( id ) ) {
 
-      let tool = tools[ slug ];
+          let tool = tools[ id ];
 
-      let $templTool = $('<li class="item">\
-                            <label for="' + slug + '">\
-                              <input type="checkbox" ' + ( tool.status ? 'checked' : '' ) + ' id="' + slug + '" name="' + slug + '" value="">\
-                              <div class="tool tool-' + tool.id + '">\
-                                <div class="name">' + tool.name + '</div>\
-                                <div class="time"><span class="started">' + tool.started + '</span></div>\
-                              </div>\
-                            </label>\
-                          </li>');
+          let $templTool = $('<li class="item" id="tool-' + tool.id + '">\
+                                <label class="lbl" for="' + tool.slug + '">\
+                                  <input type="checkbox" ' + ( tool.status ? 'checked' : '' ) + ' id="' + tool.slug + '" class="js-despatch" name="' + tool.slug + '" value="">\
+                                  <div class="tool tool-' + tool.id + '">\
+                                    <div class="name">' + tool.name + '</div>\
+                                    <div class="time"><span class="started">' + tool.init + '</span></div>\
+                                  </div>\
+                                </label>\
+                              </li>');
 
-      $( '.tools' ).append( $templTool );
+          $( '.tools' ).append( $templTool );
 
-        // tools.push( data );
+        }
+
+      }
+
+      $tools
+        .find( '.js-despatch' )
+          .on( 'click', function( e ) {
+
+            let $this = $( this );
+
+            toolsRef.child( $this.prop( 'id' ) ).update( { status: $this.prop( 'checked' ) } );
+
+          } );
+
+    } );
+
+toolsRef
+  .on( 'child_changed', function( snapshot ) {
+
+    let tool = snapshot.val(),
+        $target = $( '#tool-' + tool.id );
+
+        console.log( tool );
+
+    let status = $target.find( '[type=checkbox]' ).prop( 'checked' );
+
+    if( status !== tool.status  ) {
+
+       $target.find( '[type=checkbox]' ).prop( 'checked', tool.status );
 
     }
 
