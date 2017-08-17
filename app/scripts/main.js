@@ -35,6 +35,8 @@ toolsRef
             let $this = $( this );
                 status = $this.data( 'status' );
 
+            $this.removeClass( 'off' );
+            $this.removeClass( 'on' );
             $this.addClass( 'pulse' );
 
             // toolsRef.child( $this.attr( 'id' ) ).update( { status: status != 'true' } );
@@ -59,15 +61,15 @@ toolsRef
 
       $target.removeClass( 'pulse' );
 
-      if( tool.status && !$target.hasClass( 'on' ) ) {
+      if( tool.status ) {
 
-        $target.addClass( 'on' );
         $target.removeClass( 'off' );
+        $target.addClass( 'on' );
 
-      } else if( !tool.status && !$target.hasClass( 'off' ) ) {
+      } else {
 
-        $target.addClass( 'off' );
         $target.removeClass( 'on' );
+        $target.addClass( 'off' );
 
       }
     }, 1500 );
