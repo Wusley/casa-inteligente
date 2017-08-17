@@ -1,15 +1,5 @@
 'use strict';
 
-let $templTool = $('<li class="item">\
-                      <label for="iluminacao-sala">\
-                        <input type="checkbox" id="iluminacao-sala" name="iluminacao-sala" value="">\
-                        <div class="tool tool-1">\
-                          <div class="name">Iluminação Sala</div>\
-                          <div class="time"><span class="started">8:10</span></div>\
-                        </div>\
-                      </label>\
-                    </li>');
-
 const toolsRef = firebase.database().ref( 'casa-1/tools' );
 
 toolsRef
@@ -25,14 +15,11 @@ toolsRef
 
           let tool = tools[ id ];
 
-          let $templTool = $('<li class="item" id="tool-' + tool.id + '">\
-                                <label class="lbl" for="' + tool.slug + '">\
-                                  <input type="checkbox" ' + ( tool.status ? 'checked' : '' ) + ' id="' + tool.slug + '" class="js-despatch" name="' + tool.slug + '" value="">\
-                                  <div class="tool tool-' + tool.id + '">\
-                                    <div class="name">' + tool.name + '</div>\
-                                    <div class="time"><span class="started">' + tool.init + '</span></div>\
-                                  </div>\
-                                </label>\
+          let $templTool = $('<li class="item js-tool ' + ( tool.status ? 'on' : 'off' ) + '" id="tool-' + tool.id + '" data-status="' + tool.status + '" >\
+                                <div class="tool tool-' + tool.id + '">\
+                                  <div class="name">' + tool.name + '</div>\
+                                  <div class="time"><span class="started">' + tool.init + '</span></div>\
+                                </div>\
                               </li>');
 
           $( '.tools' ).append( $templTool );
@@ -42,12 +29,16 @@ toolsRef
       }
 
       $tools
-        .find( '.js-despatch' )
-          .on( 'click', function( e ) {
+        .find( '.js-tool' )
+          .on( 'click', function() {
 
             let $this = $( this );
+                status = $this.data( 'status' );
 
-            toolsRef.child( $this.closest( '.item' ).prop( 'id' ) ).update( { status: $this.prop( 'checked' ) } );
+            $this.addClass( 'pulse' );
+
+            // toolsRef.child( $this.attr( 'id' ) ).update( { status: status != 'true' } );
+            toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status != 'true' } );
 
           } );
 
@@ -59,14 +50,27 @@ toolsRef
     let tool = snapshot.val(),
         $target = $( '#tool-' + tool.id );
 
-        console.log( tool );
+    setTimeout( function() {
 
-    let status = $target.find( '[type=checkbox]' ).prop( 'checked' );
+      // remove wait
+      // atualiza status
 
-    if( status !== tool.status  ) {
+      $target.data( 'status', tool.status );
 
-       $target.find( '[type=checkbox]' ).prop( 'checked', tool.status );
+      $target.removeClass( 'pulse' );
 
-    }
+      if( tool.status && !$target.hasClass( 'on' ) ) {
+
+        $target.addClass( 'on' );
+        $target.removeClass( 'off' );
+
+      } else if( !tool.status && !$target.hasClass( 'off' ) ) {
+
+        $target.addClass( 'off' );
+        $target.removeClass( 'on' );
+
+      }
+    }, 1500 );
+
 
   } );

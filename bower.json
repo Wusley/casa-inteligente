@@ -2,7 +2,8 @@
   "name": "ctrlthingsmodel",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "animate.css": "^3.5.2"
   },
   "devDependencies": {
     "chai": "^4.0.2",
