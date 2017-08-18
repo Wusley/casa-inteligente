@@ -98,7 +98,7 @@ gulp.task('sprite', [], function () {
 // CSS
 
 gulp.task('clean:css', function () {
-  return del(distPath + '/css/*');
+  return del(distPath + '/styles/*');
 });
 
 gulp.task('build:css', ['clean:css', 'sprite'], function () {
@@ -107,19 +107,19 @@ gulp.task('build:css', ['clean:css', 'sprite'], function () {
       $fileHash: new Date().valueOf()
     }))
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(distPath + '/css'))
+    .pipe(gulp.dest(distPath + '/styles'))
     .pipe(livereload());
 });
 
 gulp.task('copy:css', ['build:css'], function() {
-  return gulp.src(distPath + '/css/*')
-    .pipe(gulp.dest('.tmp/css'));
+  return gulp.src(distPath + '/styles/*')
+    .pipe(gulp.dest('.tmp/styles'));
 });
 
 gulp.task('minify', ['copy:css'], function() {
-  return gulp.src('.tmp/css/*')
+  return gulp.src('.tmp/styles/*')
     .pipe(minify({compatibility: 'ie10'}))
-    .pipe(gulp.dest(distPath + '/css'));
+    .pipe(gulp.dest(distPath + '/styles'));
 });
 
 //JS
@@ -267,31 +267,31 @@ gulp.task( 'gzip', [ 'clean:gzip','minify', 'uglify' ], function() {
 
 // CDN S3
 
-gulp.task( 'uploadgzip', [ 'gzip' ], function() {
-  return gulp.src( './gzipped/**/*.*' )
-  .pipe( s3( {
-    Bucket: s3Bucket,
-    ACL: 'public-read',
-    ContentEncoding: 'gzip',
-    CacheControl: 'max-age=1296000'
-  }, {
-    maxRetries: 5
-  } ) );
-} );
+// gulp.task( 'uploadgzip', [ 'gzip' ], function() {
+//   return gulp.src( './gzipped/**/*.*' )
+//   .pipe( s3( {
+//     Bucket: s3Bucket,
+//     ACL: 'public-read',
+//     ContentEncoding: 'gzip',
+//     CacheControl: 'max-age=1296000'
+//   }, {
+//     maxRetries: 5
+//   } ) );
+// } );
 
-gulp.task( 'uploadimg', [], function() {
-  return gulp.src([
-    distPath + '/**/*.jpg',
-    distPath + '/**/*.png',
-    distPath + '/**/*.webp'
-  ])
-  .pipe( s3( {
-    Bucket: s3Bucket,
-    ACL: 'public-read',
-    CacheControl: 'max-age=1296000'
-  }, {
-    maxRetries: 5
-  } ) );
-} );
+// gulp.task( 'uploadimg', [], function() {
+//   return gulp.src([
+//     distPath + '/**/*.jpg',
+//     distPath + '/**/*.png',
+//     distPath + '/**/*.webp'
+//   ])
+//   .pipe( s3( {
+//     Bucket: s3Bucket,
+//     ACL: 'public-read',
+//     CacheControl: 'max-age=1296000'
+//   }, {
+//     maxRetries: 5
+//   } ) );
+// } );
 
-gulp.task( 'uploads3', [ 'uploadgzip', 'uploadimg' ]);
+// gulp.task( 'uploads3', [ 'uploadgzip', 'uploadimg' ]);
