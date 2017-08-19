@@ -6,9 +6,7 @@ var cndConfig = {
     },
     s3Bucket = '';
 
-var gulp = require('gulp'),
-    del = require('del'),
-    sass = require('gulp-sass'),
+var sass = require('gulp-sass'),
     minify = require('gulp-clean-css'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -22,8 +20,16 @@ var gulp = require('gulp'),
     webp = require('gulp-webp'),
     sassVariables = require('gulp-sass-variables');
 
+const gulp = require('gulp');
+const gulpLoadPlugins = require('gulp-load-plugins');
+const del = require('del');
+
+const $ = gulpLoadPlugins();
+
 var srcPath = 'src',
     distPath = 'app/public';
+
+let dev = true;
 
 // IMAGES
 
@@ -114,6 +120,7 @@ gulp.task('build:css', ['clean:css', 'sprite'], function () {
 
 gulp.task('copy:css', ['build:css'], function() {
   return gulp.src(distPath + '/styles/*')
+    .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
 
@@ -157,13 +164,20 @@ gulp.task('build:jslibs', ['clean:jslibs'], function() {
 
 gulp.task('copy:concat', ['build:js', 'build:jslibs'], function() {
   return gulp.src(distPath + '/scripts/**/*.js')
+    .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.babel())
+    .pipe($.if(dev, $.sourcemaps.write('.')))
     .pipe(gulp.dest('.tmp/scripts'));
 });
 
 gulp.task('uglify', ['copy:concat'], function() {
   return gulp.src('.tmp/scripts/**/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest(distPath + '/scripts'));
+    .pipe(uglify({compress: {drop_console: true}}))
+    .on('error', function(err) {
+      process.stdout.write('\\' + err.toString() + '\\n\n');
+    })
+    .pipe(gulp.dest(distPath + '/scripts'))
 });
 
 // TEMPLATE
