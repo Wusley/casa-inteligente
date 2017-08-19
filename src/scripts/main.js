@@ -24,6 +24,7 @@ toolsRef
 
           $( '.tools' ).append( $templTool );
 
+
         }
 
       }
