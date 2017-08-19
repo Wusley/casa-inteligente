@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "ignore": [".tmp/**/*", "app/public/scripts/**/*", "src/**/*"]
+}
