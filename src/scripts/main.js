@@ -39,7 +39,6 @@ toolsRef
             $this.removeClass( 'on' );
             $this.addClass( 'pulse' );
 
-            // toolsRef.child( $this.attr( 'id' ) ).update( { status: status != 'true' } );
             toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status != 'true' } );
 
           } );
@@ -52,12 +51,9 @@ toolsRef
     let tool = snapshot.val(),
         $target = $( '#tool-' + tool.id );
 
-    setTimeout( function() {
+    $target.data( 'status', tool.status );
 
-      // remove wait
-      // atualiza status
-
-      $target.data( 'status', tool.status );
+    if( !tool.wait ) {
 
       $target.removeClass( 'pulse' );
 
@@ -72,7 +68,7 @@ toolsRef
         $target.addClass( 'off' );
 
       }
-    }, 1500 );
 
+    }
 
   } );
