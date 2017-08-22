@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  {% include 'modules/head.twig' %}
+
+  <body>
+
+    {% block layout %}
+
+      {{ layout|raw }}
+
+    {% endblock layout %}
+
+    {% include 'modules/scripts.twig' %}
+
+  </body>
+</html>

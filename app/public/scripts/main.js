@@ -1,1 +1,74 @@
-"use strict";var toolsRef=firebase.database().ref("casa-0/tools");toolsRef.once("value").then(function(s){var a=s.val(),t=$(".tools");for(var o in a)if(a.hasOwnProperty(o)){var l=a[o],e=$('<li class="item js-tool '+(l.status?"on":"off")+'" id="tool-'+l.id+'" data-status="'+l.status+'" >                                <div class="tool tool-'+l.id+'">                                  <div class="name">'+l.name+'</div>                                  <div class="time"><span class="started">'+l.init+"</span></div>                                </div>                              </li>");$(".tools").append(e)}t.find(".js-tool").on("click",function(){var s=$(this);status=s.data("status"),s.removeClass("off"),s.removeClass("on"),s.addClass("pulse"),toolsRef.child(s.attr("id")).update({wait:!0,status:"true"!=status})})}),toolsRef.on("child_changed",function(s){var a=s.val(),t=$("#tool-"+a.id);t.data("status",a.status),a.wait||(t.removeClass("pulse"),a.status?(t.removeClass("off"),t.addClass("on")):(t.removeClass("on"),t.addClass("off")))});
+'use strict';
+
+const toolsRef = firebase.database().ref( 'casa-0/tools' );
+
+toolsRef
+  .once( 'value' )
+    .then( function( snapshot ) {
+
+      let tools = snapshot.val(),
+          $tools = $( '.tools' );
+
+      for( let id in tools ) {
+
+        if( tools.hasOwnProperty( id ) ) {
+
+          let tool = tools[ id ];
+
+          let $templTool = $('<li class="item js-tool ' + ( tool.status ? 'on' : 'off' ) + '" id="tool-' + tool.id + '" data-status="' + tool.status + '" >\
+                                <div class="tool tool-' + tool.id + '">\
+                                  <div class="name">' + tool.name + '</div>\
+                                  <div class="time"><span class="started">' + tool.init + '</span></div>\
+                                </div>\
+                              </li>');
+
+          $( '.tools' ).append( $templTool );
+
+        }
+
+      }
+
+      $tools
+        .find( '.js-tool' )
+          .on( 'click', function() {
+
+            let $this = $( this );
+                status = $this.data( 'status' );
+
+            $this.removeClass( 'off' );
+            $this.removeClass( 'on' );
+            $this.addClass( 'pulse' );
+
+            toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status != 'true' } );
+
+          } );
+
+    } );
+
+toolsRef
+  .on( 'child_changed', function( snapshot ) {
+
+    let tool = snapshot.val(),
+        $target = $( '#tool-' + tool.id );
+
+    $target.data( 'status', tool.status );
+
+    if( !tool.wait ) {
+
+      $target.removeClass( 'pulse' );
+
+      if( tool.status ) {
+
+        $target.removeClass( 'off' );
+        $target.addClass( 'on' );
+
+      } else {
+
+        $target.removeClass( 'on' );
+        $target.addClass( 'off' );
+
+      }
+
+    }
+
+  } );
