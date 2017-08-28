@@ -116,6 +116,7 @@ a {
 #panel {
   position: absolute;
   display: block;
+  padding-bottom: 2vh;
   width: 100%;
   min-height: 100%;
   overflow: hidden; }
@@ -264,11 +265,11 @@ svg path {
     .tools .tool:after {
       content: "";
       position: absolute;
-      left: 13.75vw;
-      top: 6.55vw;
+      left: 13.60vw;
+      top: 6.4vw;
       display: block;
-      width: 2.8vw;
-      height: 2.8vw;
+      width: 3vw;
+      height: 3vw;
       border-radius: 50%;
       transform: scale(1, 1); }
     .tools .tool:before {
@@ -307,7 +308,8 @@ svg path {
   from {
     height: 0vh; }
   to {
-    height: 100vh; } }
+    min-height: 120vh;
+    height: 100%; } }
 
 @keyframes born {
   from {

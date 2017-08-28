@@ -15,7 +15,7 @@ toolsRef
 
           let tool = tools[ id ];
 
-          let $templTool = $('<li class="item js-tool ' + ( tool.status ? 'on' : 'off' ) + '" id="tool-' + tool.id + '" data-status="' + tool.status + '" >\
+          let $templTool = $('<li class="item js-tool ' + ( tool.status ? 'on' : 'off' ) + '" id="tool-' + tool.id + '" data-status="' + tool.status + '" data-type="' + tool.type + '" >\
                                 <div class="tool tool-' + tool.id + '">\
                                   <div class="name">' + tool.name + '</div>\
                                   <div class="time"><span class="started">' + tool.init + '</span></div>\
@@ -32,18 +32,69 @@ toolsRef
         .find( '.js-tool' )
           .on( 'click', function() {
 
-            let $this = $( this );
-                status = $this.data( 'status' );
+            let $this = $( this ),
+                type = $this.data( 'type' );
 
-            $this.removeClass( 'off' );
-            $this.removeClass( 'on' );
-            $this.addClass( 'pulse' );
+            if( type === 'on-off' ) {
 
-            toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status != 'true' } );
+              changeOnOff( $this );
+
+            } else if( type === 'time' ) {
+
+              changeTime( $this );
+
+            }
 
           } );
 
     } );
+
+function changeOnOff( $this ) {
+  let status = $this.data( 'status' );
+
+  $this.removeClass( 'off' );
+  $this.removeClass( 'on' );
+  $this.addClass( 'pulse' );
+
+  toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status != 'true' } );
+
+}
+
+function changeTime( $this ) {
+
+  let status = $this.data( 'status' );
+
+  $this.removeClass( 'off' );
+  $this.removeClass( 'on' );
+  $this.addClass( 'pulse' );
+
+  setTimeout( function() {
+
+    var val = prompt( 'Quantas vezes por dia?' );
+
+    if( !validateTime( val ) ) {
+
+      applyStatus( $this, status );
+
+    }
+
+  }, 100 );
+
+}
+
+function validateTime( val ) {
+
+  let res = false;
+
+  if( val.length ) {
+
+    res = true;
+
+  }
+
+  return res;
+
+}
 
 toolsRef
   .on( 'child_changed', function( snapshot ) {
@@ -55,20 +106,26 @@ toolsRef
 
     if( !tool.wait ) {
 
-      $target.removeClass( 'pulse' );
-
-      if( tool.status ) {
-
-        $target.removeClass( 'off' );
-        $target.addClass( 'on' );
-
-      } else {
-
-        $target.removeClass( 'on' );
-        $target.addClass( 'off' );
-
-      }
+      applyStatus( $target, tool.status );
 
     }
 
   } );
+
+function applyStatus( $element, status) {
+
+  $element.removeClass( 'pulse' );
+
+  if( status ) {
+
+    $element.removeClass( 'off' );
+    $element.addClass( 'on' );
+
+  } else {
+
+    $element.removeClass( 'on' );
+    $element.addClass( 'off' );
+
+  }
+
+}
