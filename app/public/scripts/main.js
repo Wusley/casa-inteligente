@@ -52,11 +52,13 @@ toolsRef
 function changeOnOff( $this ) {
   let status = $this.data( 'status' );
 
+  console.log( status != true );
+
   $this.removeClass( 'off' );
   $this.removeClass( 'on' );
   $this.addClass( 'pulse' );
 
-  toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status != 'true' } );
+  toolsRef.child( $this.attr( 'id' ) ).update( { wait: true, status: status !== true } );
 
 }
 
