@@ -52,8 +52,6 @@ toolsRef
 function changeOnOff( $this ) {
   let status = $this.data( 'status' );
 
-  console.log( status != true );
-
   $this.removeClass( 'off' );
   $this.removeClass( 'on' );
   $this.addClass( 'pulse' );
